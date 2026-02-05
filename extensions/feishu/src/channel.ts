@@ -1,5 +1,6 @@
 import type { ChannelPlugin, OpenClawConfig } from "openclaw/plugin-sdk";
-import { DEFAULT_ACCOUNT_ID, PAIRING_APPROVED_MESSAGE } from "openclaw/plugin-sdk";
+import { buildChannelConfigSchema, DEFAULT_ACCOUNT_ID, PAIRING_APPROVED_MESSAGE } from "openclaw/plugin-sdk";
+import { FeishuConfigSchema } from "./config-schema.js";
 import type { ResolvedFeishuAccount, FeishuConfig } from "./types.js";
 import { resolveFeishuAccount, resolveFeishuCredentials } from "./accounts.js";
 import { feishuOutbound } from "./outbound.js";
@@ -61,39 +62,7 @@ export const feishuPlugin: ChannelPlugin<ResolvedFeishuAccount> = {
     resolveToolPolicy: resolveFeishuGroupToolPolicy,
   },
   reload: { configPrefixes: ["channels.feishu"] },
-  configSchema: {
-    schema: {
-      type: "object",
-      additionalProperties: false,
-      properties: {
-        enabled: { type: "boolean" },
-        appId: { type: "string" },
-        appSecret: { type: "string" },
-        encryptKey: { type: "string" },
-        verificationToken: { type: "string" },
-        domain: {
-          oneOf: [
-            { type: "string", enum: ["feishu", "lark"] },
-            { type: "string", format: "uri", pattern: "^https://" },
-          ],
-        },
-        connectionMode: { type: "string", enum: ["websocket", "webhook"] },
-        webhookPath: { type: "string" },
-        webhookPort: { type: "integer", minimum: 1 },
-        dmPolicy: { type: "string", enum: ["open", "pairing", "allowlist"] },
-        allowFrom: { type: "array", items: { oneOf: [{ type: "string" }, { type: "number" }] } },
-        groupPolicy: { type: "string", enum: ["open", "allowlist", "disabled"] },
-        groupAllowFrom: { type: "array", items: { oneOf: [{ type: "string" }, { type: "number" }] } },
-        requireMention: { type: "boolean" },
-        historyLimit: { type: "integer", minimum: 0 },
-        dmHistoryLimit: { type: "integer", minimum: 0 },
-        textChunkLimit: { type: "integer", minimum: 1 },
-        chunkMode: { type: "string", enum: ["length", "newline"] },
-        mediaMaxMb: { type: "number", minimum: 0 },
-        renderMode: { type: "string", enum: ["auto", "raw", "card"] },
-      },
-    },
-  },
+  configSchema: buildChannelConfigSchema(FeishuConfigSchema),
   config: {
     listAccountIds: () => [DEFAULT_ACCOUNT_ID],
     resolveAccount: (cfg) => resolveFeishuAccount({ cfg }),

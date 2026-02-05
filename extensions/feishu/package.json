@@ -5,10 +5,10 @@
   "type": "module",
   "dependencies": {
     "@larksuiteoapi/node-sdk": "^1.56.1",
-    "@sinclair/typebox": "^0.34.48",
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@sinclair/typebox": "^0.34.48",
     "openclaw": "workspace:*"
   },
   "openclaw": {
@@ -22,7 +22,7 @@
       "detailLabel": "Feishu Bot",
       "docsPath": "/channels/feishu",
       "docsLabel": "feishu",
-      "blurb": "飞书/Lark enterprise messaging via WebSocket.",
+      "blurb": "Feishu/Lark enterprise messaging via WebSocket.",
       "aliases": [
         "lark"
       ],

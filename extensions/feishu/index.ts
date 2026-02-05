@@ -8,42 +8,6 @@ import { registerFeishuDriveTools } from "./src/drive.js";
 import { registerFeishuPermTools } from "./src/perm.js";
 import { registerFeishuBitableTools } from "./src/bitable.js";
 
-export { monitorFeishuProvider } from "./src/monitor.js";
-export {
-  sendMessageFeishu,
-  sendCardFeishu,
-  updateCardFeishu,
-  editMessageFeishu,
-  getMessageFeishu,
-} from "./src/send.js";
-export {
-  uploadImageFeishu,
-  uploadFileFeishu,
-  sendImageFeishu,
-  sendFileFeishu,
-  sendMediaFeishu,
-} from "./src/media.js";
-export { probeFeishu } from "./src/probe.js";
-export {
-  addReactionFeishu,
-  removeReactionFeishu,
-  listReactionsFeishu,
-  FeishuEmoji,
-} from "./src/reactions.js";
-export {
-  extractMentionTargets,
-  extractMessageBody,
-  isMentionForwardRequest,
-  formatMentionForText,
-  formatMentionForCard,
-  formatMentionAllForText,
-  formatMentionAllForCard,
-  buildMentionedMessage,
-  buildMentionedCardContent,
-  type MentionTarget,
-} from "./src/mention.js";
-export { feishuPlugin } from "./src/channel.js";
-
 const plugin = {
   id: "feishu",
   name: "Feishu",
